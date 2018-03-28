@@ -116,9 +116,25 @@
             <version>3.4.6</version>
         </dependency>
 
+        <!-- markdown parser:https://github.com/cevin15/MDTool -->
+        <dependency>
+            <groupId>com.youbenzi</groupId>
+            <artifactId>MDTool</artifactId>
+            <version>1.2.0</version>
+        </dependency>
 
     </dependencies>
+
     <build>
-        <finalName>util-demo</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 </project>

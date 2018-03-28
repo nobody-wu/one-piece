@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cornelius.bean.User">
+	<resultMap type="com.cornelius.bean.User" id="userMap">
+		<id column="id" property="id"/>
+		<id column="username" property="username"/>
+		<id column="password" property="password"/>
+	</resultMap>
+  <select id="selectByName" resultType="Integer"
+  	resultMap="userMap">
+    select id,username,password from user where id = #{id}
+  </select>
+</mapper>

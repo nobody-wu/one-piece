@@ -7,7 +7,7 @@
 
     <!-- 引入外部文件 -->
     <!-- 方式一 -->
-    <util:properties id="jdbc" location="classpath:jdbc-basic.properties">
+    <util:properties id="jdbc" location="classpath*:jdbc-basic.properties">
     </util:properties>
 
     <!-- 方式二 -->
@@ -48,27 +48,32 @@
     </bean>
 
     <!-- 配置连接池 -->
-    <bean name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+    <bean name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="#{jdbc.driver}"/>
         <property name="url" value="#{jdbc.url}"/>
         <property name="username" value="#{jdbc.username}"/>
         <property name="password" value="#{jdbc.password}"/>
+        
     </bean>
 
     <!-- spring集成mybatis -->
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        <!--<property name="configLocation" value="classpath:sqlmap-config.xml"/>-->
-        <property name="mapperLocations">
-            <list>
-                <value>classpath*:com/cornelius/mapper/*.xml</value>
-            </list>
-        </property>
+   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--<property name="configLocation" value="classpath*:mybatis.xml"/>-->
+    	<property name="mapperLocations" value="classpath*:com/cornelius/mapper/*.xml"/>
+    	<property name="dataSource" ref="dataSource"/>
+    	<property name="typeAliasesPackage" value="com.cornelius.bean"/>
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.cornelius.mapper"/>
+        <property name="basePackage" value="com.cornelius.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
+    
+	<!-- 页面跳转前后缀 -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/page/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
 
 </beans>

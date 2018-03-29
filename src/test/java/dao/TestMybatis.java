@@ -1,24 +1,21 @@
 package dao;
 
-import java.io.IOException;
-
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 
 import com.cornelius.bean.User;
-import com.cornelius.dao.UserDao;
-
+import com.cornelius.service.UserService;
+@ContextConfiguration({"/application*.xml"})
 public class TestMybatis {
-	private UserDao dao = new UserDao();
+
+	@Autowired
+	private UserService service;
 	
 	@Test
 	public void test() {
-		
-		try {
-			User u = dao.selectById(1);
-			System.out.println(u);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		User u = service.getUser(1);
+		System.out.println(u);
 		
 	}
 

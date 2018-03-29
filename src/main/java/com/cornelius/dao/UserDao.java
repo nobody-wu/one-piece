@@ -1,29 +1,27 @@
 package com.cornelius.dao;
 
-import java.io.IOException;
-import java.io.InputStream;
-
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.stereotype.Repository;
 
 import com.cornelius.bean.User;
+import com.cornelius.dao.base.BaseDao;
 
 /**
  * user
  * @author wxk
  *
  */
-public class UserDao {
+@Repository
+public class UserDao extends BaseDao{
 
-	public User selectById(int id) throws IOException{
-		String resource = "mybatis.xml";
-		InputStream inStream = Resources.getResourceAsStream(resource);
-		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(inStream);
-		SqlSession session = factory.openSession();
-		User u = session.selectOne("com.cornelius.mapper.User.selectByName",id);
-		System.out.println(u);
-		return u;
+
+	public User selectById(int id){
+		return selectOne("com.cornelius.mapper.User.selectById",id);
+	}
+	
+	public User getUser(User u){
+		return selectOne("com.cornelius.mapper.User.getUser",u);
+	}
+	public int saveUser(User u){
+		return insert("com.cornelius.mapper.User.saveUser",u);
 	}
 }

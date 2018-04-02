@@ -1,14 +1,14 @@
 package com.cornelius.util;
 
 /**
- * Ê±¼ä¹¤¾ß
+ * æ—¶é—´å·¥å…·ç±»
  * @author wxk
  *
  */
 public class DateUtil {
 
 	/**
-	 * »ñÈ¡µ±Ç°Ê±¼ä´Á£¨Ãë£©
+	 * è·å–å½“å‰æ—¶é—´æˆ³
 	 * @return
 	 */
 	public static Integer getCurrentTime(){

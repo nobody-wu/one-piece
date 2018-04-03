@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+	<c:set var="ctx" value="${pageContext.request.contextPath}"/>
     <title>Modern Business - Start Bootstrap Template</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${ctx}/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/css/modern-business.css" rel="stylesheet">
+    <link href="${ctx}/css/modern-business.css" rel="stylesheet">
 
   </head>
 
@@ -31,7 +31,7 @@
 
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="index.html">Home</a>
+          <a href="${ctx}/home/index">Home</a>
         </li>
         <li class="breadcrumb-item active">404</li>
       </ol>
@@ -41,31 +41,31 @@
         <p>The page you're looking for could not be found. Here are some helpful links to get you back on track:</p>
         <ul>
           <li>
-            <a href="/home/index">Home</a>
+            <a href="${ctx}/home/index">Home</a>
           </li>
           <li>
-            <a href="/home/about">About</a>
+            <a href="${ctx}/home/about">About</a>
           </li>
           <li>
-            <a href="/service/services">Services</a>
+            <a href="${ctx}/service/services">Services</a>
           </li>
           <li>
-            <a href="/home/contact">Contact</a>
+            <a href="${ctx}/home/contact">Contact</a>
           </li>
           <li>
             Portfolio
             <ul>
               <li>
-                <a href="/portfolio/1">1 Column Portfolio</a>
+                <a href="${ctx}/portfolio/1">1 Column Portfolio</a>
               </li>
               <li>
-                <a href="/portfolio/2">2 Column Portfolio</a>
+                <a href="${ctx}/portfolio/2">2 Column Portfolio</a>
               </li>
               <li>
-                <a href="/portfolio/3">3 Column Portfolio</a>
+                <a href="${ctx}/portfolio/3">3 Column Portfolio</a>
               </li>
               <li>
-                <a href="/portfolio/4">4 Column Portfolio</a>
+                <a href="${ctx}/portfolio/4">4 Column Portfolio</a>
               </li>
             </ul>
           </li>
@@ -73,13 +73,13 @@
             Blog
             <ul>
               <li>
-                <a href="/blog/home-1">Blog Home 1</a>
+                <a href="${ctx}/blog/home-1">Blog Home 1</a>
               </li>
               <li>
-                <a href="/blog/home-2">Blog Home 2</a>
+                <a href="${ctx}/blog/home-2">Blog Home 2</a>
               </li>
               <li>
-                <a href="/blog/post">Blog Post</a>
+                <a href="${ctx}/blog/post">Blog Post</a>
               </li>
             </ul>
           </li>
@@ -87,19 +87,19 @@
             Other Pages
             <ul>
               <li>
-                <a href="/other/fullWidth">Full Width Page</a>
+                <a href="${ctx}/other/fullWidth">Full Width Page</a>
               </li>
               <li>
-                <a href="/other/sidebar">Sidebar Page</a>
+                <a href="${ctx}/other/sidebar">Sidebar Page</a>
               </li>
               <li>
-                <a href="/other/faq">FAQ</a>
+                <a href="${ctx}/other/faq">FAQ</a>
               </li>
               <li>
-                <a href="/page/error/404.jsp">404 Page</a>
+                <a href="${ctx}/page/error/404.jsp">404 Page</a>
               </li>
               <li>
-                <a href="/other/pricing">Pricing Table</a>
+                <a href="${ctx}/other/pricing">Pricing Table</a>
               </li>
             </ul>
           </li>

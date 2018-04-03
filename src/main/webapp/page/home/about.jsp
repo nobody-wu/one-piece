@@ -10,12 +10,12 @@
     <meta name="author" content="">
 
     <title>Modern Business - Start Bootstrap Template</title>
-
+	<c:set var="ctx" value="${pageContext.request.contextPath}"/>
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${ctx}/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/css/modern-business.css" rel="stylesheet">
+    <link href="${ctx}/css/modern-business.css" rel="stylesheet">
 
   </head>
 
@@ -33,7 +33,7 @@
 
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="/home/index">Home</a>
+          <a href="${ctx}/home/index">Home</a>
         </li>
         <li class="breadcrumb-item active">About</li>
       </ol>

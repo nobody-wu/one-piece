@@ -8,14 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+	<c:set var="ctx" value="${pageContext.request.contextPath}"/>
     <title>Modern Business - Start Bootstrap Template</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${ctx}/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/css/modern-business.css" rel="stylesheet">
+    <link href="${ctx}/css/modern-business.css" rel="stylesheet">
 
   </head>
 
@@ -33,7 +33,7 @@
 
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="/home/index">Home</a>
+          <a href="${ctx}/home/index">Home</a>
         </li>
         <li class="breadcrumb-item active">About</li>
       </ol>
@@ -43,23 +43,23 @@
         <!-- Sidebar Column -->
         <div class="col-lg-3 mb-4">
           <div class="list-group">
-            <a href="/home/index" class="list-group-item">Home</a>
-            <a href="/home/about" class="list-group-item">About</a>
-            <a href="/service/services" class="list-group-item">Services</a>
-            <a href="/home/contact" class="list-group-item">Contact</a>
-            <a href="/portfolio/1" class="list-group-item">1 Column Portfolio</a>
-            <a href="/portfolio/2" class="list-group-item">2 Column Portfolio</a>
-            <a href="/portfolio/3" class="list-group-item">3 Column Portfolio</a>
-            <a href="/portfolio/4" class="list-group-item">4 Column Portfolio</a>
-            <a href="/portfolio/item" class="list-group-item">Single Portfolio Item</a>
-            <a href="/blog/home-1" class="list-group-item">Blog Home 1</a>
-            <a href="/blog/home-2" class="list-group-item">Blog Home 2</a>
-            <a href="/blog/post" class="list-group-item">Blog Post</a>
-            <a href="/other/fullWidth" class="list-group-item">Full Width Page</a>
-            <a href="/other/sidebar" class="list-group-item active">Sidebar Page</a>
-            <a href="/other/faq" class="list-group-item">FAQ</a>
-            <a href="/page/error/404.jsp" class="list-group-item">404</a>
-            <a href="/other/pricing" class="list-group-item">Pricing Table</a>
+            <a href="${ctx}/home/index" class="list-group-item">Home</a>
+            <a href="${ctx}/home/about" class="list-group-item">About</a>
+            <a href="${ctx}/service/services" class="list-group-item">Services</a>
+            <a href="${ctx}/home/contact" class="list-group-item">Contact</a>
+            <a href="${ctx}/portfolio/1" class="list-group-item">1 Column Portfolio</a>
+            <a href="${ctx}/portfolio/2" class="list-group-item">2 Column Portfolio</a>
+            <a href="${ctx}/portfolio/3" class="list-group-item">3 Column Portfolio</a>
+            <a href="${ctx}/portfolio/4" class="list-group-item">4 Column Portfolio</a>
+            <a href="${ctx}/portfolio/item" class="list-group-item">Single Portfolio Item</a>
+            <a href="${ctx}/blog/home-1" class="list-group-item">Blog Home 1</a>
+            <a href="${ctx}/blog/home-2" class="list-group-item">Blog Home 2</a>
+            <a href="${ctx}/blog/post" class="list-group-item">Blog Post</a>
+            <a href="${ctx}/other/fullWidth" class="list-group-item">Full Width Page</a>
+            <a href="${ctx}/other/sidebar" class="list-group-item active">Sidebar Page</a>
+            <a href="${ctx}/other/faq" class="list-group-item">FAQ</a>
+            <a href="${ctx}/page/error/404.jsp" class="list-group-item">404</a>
+            <a href="${ctx}/other/pricing" class="list-group-item">Pricing Table</a>
           </div>
         </div>
         <!-- Content Column -->

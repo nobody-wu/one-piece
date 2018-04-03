@@ -34,7 +34,7 @@ public class PortfolioController {
 	}
 	@RequestMapping("/item")
 	public ModelAndView item(Model model,HttpServletRequest request,HttpServletResponse response){
-		ModelAndView mv = new ModelAndView("portfolio/item"); 
+		ModelAndView mv = new ModelAndView("portfolio/portfolio-item"); 
 		return mv;
 	}
 }

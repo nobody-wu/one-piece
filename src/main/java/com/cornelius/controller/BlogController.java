@@ -23,7 +23,7 @@ public class BlogController {
 	}
 	@RequestMapping("/post")
 	public ModelAndView post(Model model,HttpServletRequest request,HttpServletResponse response){
-		ModelAndView mv = new ModelAndView("blog/blog-post2"); 
+		ModelAndView mv = new ModelAndView("blog/blog-post"); 
 		return mv;
 	}
 }

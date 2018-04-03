@@ -18,11 +18,11 @@ public class Analyzer {
 			MDToken.ITALIC_WORD_2, MDToken.STRIKE_WORD, MDToken.CODE_WORD, MDToken.IMG, MDToken.LINK);
 
 	/**
-	 * 将文本解析为语法块
+	 * 灏嗘枃鏈В鏋愪负璇硶鍧�
 	 *
 	 * @param content
-	 *            被解析的文本
-	 * @return 语法块列表
+	 *            琚В鏋愮殑鏂囨湰
+	 * @return 璇硶鍧楀垪琛�
 	 */
 	public static List<Block> analyze(String content) {
 		content = formatText(content);
@@ -37,11 +37,11 @@ public class Analyzer {
 	}
 
 	/**
-	 * 对一行文本进行语法分析，主要针对加粗，斜体等能在句中使用的格式
+	 * 瀵逛竴琛屾枃鏈繘琛岃娉曞垎鏋愶紝涓昏閽堝鍔犵矖锛屾枩浣撶瓑鑳藉湪鍙ヤ腑浣跨敤鐨勬牸寮�
 	 *
 	 * @param text
-	 *            一行文本
-	 * @return 分析结果
+	 *            涓�琛屾枃鏈�
+	 * @return 鍒嗘瀽缁撴灉
 	 */
 	public static List<ValuePart> analyzeLineText(String text) {
 
@@ -54,33 +54,33 @@ public class Analyzer {
 	}
 
 	/**
-	 * 将Text 转为 valuePart
-	 * @param text 文本内容
-	 * @param notCheckMDTokens 不需要检查的md token
-	 * @param currentTypes 当前文本已经包含的md token类型
-	 * @return valuePart 列表
+	 * 灏員ext 杞负 valuePart
+	 * @param text 鏂囨湰鍐呭
+	 * @param notCheckMDTokens 涓嶉渶瑕佹鏌ョ殑md token
+	 * @param currentTypes 褰撳墠鏂囨湰宸茬粡鍖呭惈鐨刴d token绫诲瀷
+	 * @return valuePart 鍒楄〃
 	 */
 	private static List<ValuePart> text2ValuePart(String text, List<String> notCheckMDTokens,
                                                   List<String> currentTypes) {
 		List<ValuePart> result = new ArrayList<ValuePart>();
 		text = ValuePart.convertValue(text);
 		int textLength = text.length();
-		//1. 检索到第一个的md token。输出：位置i，语法：token
+		//1. 妫�绱㈠埌绗竴涓殑md token銆傝緭鍑猴細浣嶇疆i锛岃娉曪細token
 		int i = textLength;
 		String mdToken = null;
-		for (String tmp : mdTokenInLine) { // 检查是否有指定的md语法
+		for (String tmp : mdTokenInLine) { // 妫�鏌ユ槸鍚︽湁鎸囧畾鐨刴d璇硶
 			if (notCheckMDTokens.contains(tmp)) {
 				continue;
 			}
 			int j = text.indexOf(tmp);
-			if (j > -1 && i > j) { // 找到第一个符合要求的md语法
+			if (j > -1 && i > j) { // 鎵惧埌绗竴涓鍚堣姹傜殑md璇硶
 				i = j;
 				mdToken = tmp;
 			}
 		}
-		//2. 根据这个token检测语法是否完整
+		//2. 鏍规嵁杩欎釜token妫�娴嬭娉曟槸鍚﹀畬鏁�
 		TextLinePiece piece = checkIfCorrectSyntax(i, mdToken, text);
-		//3. 对文本分为三块
+		//3. 瀵规枃鏈垎涓轰笁鍧�
 		int firstPartEndIndex = textLength;
 		int secondPartEndIndex = 0;
 		int thirdPartEndIndex = 0;
@@ -91,12 +91,12 @@ public class Analyzer {
 				thirdPartEndIndex = textLength;
 			}
 		}
-		//4. 对这个token块之前的内容归档
+		//4. 瀵硅繖涓猼oken鍧椾箣鍓嶇殑鍐呭褰掓。
 		if(firstPartEndIndex > 0) {
 			ValuePart valuePart = createValuePart(text.substring(0, firstPartEndIndex), currentTypes);
 			result.add(valuePart);
 		}
-		//5. 对这个token块的内容进行递归分析
+		//5. 瀵硅繖涓猼oken鍧楃殑鍐呭杩涜閫掑綊鍒嗘瀽
 		if(secondPartEndIndex > 0) {
 			List<String> currentTypesClone = cloneList(currentTypes);
 			List<String> notCheckMDTokensClone = cloneList(notCheckMDTokens);
@@ -128,13 +128,13 @@ public class Analyzer {
 				break;
 			}
 		}
-		//6. 对这个token块之后对内容进行递归分析
+		//6. 瀵硅繖涓猼oken鍧椾箣鍚庡鍐呭杩涜閫掑綊鍒嗘瀽
 		if(thirdPartEndIndex > 0) {
 
 			String thirdPart = "";
-			if (piece.getPieceType() == PieceType.IMAGE) { // image的开始符是两个字符，结束符是一个字符，所以要特殊处理
+			if (piece.getPieceType() == PieceType.IMAGE) { // image鐨勫紑濮嬬鏄袱涓瓧绗︼紝缁撴潫绗︽槸涓�涓瓧绗︼紝鎵�浠ヨ鐗规畩澶勭悊
 				thirdPart = text.substring(piece.getEndIndex() + 1);
-			} else { // 其它标签的开始符跟结束符长度一致
+			} else { // 鍏跺畠鏍囩鐨勫紑濮嬬璺熺粨鏉熺闀垮害涓�鑷�
 				thirdPart = text.substring(piece.getEndIndex() + mdToken.length());
 			}
 
@@ -156,11 +156,11 @@ public class Analyzer {
 	}
 
 	/**
-	 * 检查mdtoken 对应的语法是否完整
-	 * @param i 开始查找的位置
-	 * @param mdToken 查找的md token
-	 * @param text 被查找的文本
-	 * @return mdtoken对应的语法块，如果找不到，则返回null
+	 * 妫�鏌dtoken 瀵瑰簲鐨勮娉曟槸鍚﹀畬鏁�
+	 * @param i 寮�濮嬫煡鎵剧殑浣嶇疆
+	 * @param mdToken 鏌ユ壘鐨刴d token
+	 * @param text 琚煡鎵剧殑鏂囨湰
+	 * @return mdtoken瀵瑰簲鐨勮娉曞潡锛屽鏋滄壘涓嶅埌锛屽垯杩斿洖null
 	 */
 	private static TextLinePiece checkIfCorrectSyntax(int i, String mdToken, String text) {
 		if(mdToken == null) {
@@ -185,7 +185,7 @@ public class Analyzer {
 			BlockType[] types = new BlockType[mdTokens.size()];
 			int i = 0;
 			for (int k = (mdTokens.size() - 1); k >= 0; k--) {
-				types[i] = MDToken.convert(mdTokens.get(k)); // 这里引入i，是为了数组反序
+				types[i] = MDToken.convert(mdTokens.get(k)); // 杩欓噷寮曞叆i锛屾槸涓轰簡鏁扮粍鍙嶅簭
 				i++;
 			}
 			valuePart.setTypes(types);
@@ -232,7 +232,7 @@ public class Analyzer {
 
 	private static ValuePart analyzeTextInLink(String str, List<String> notCheckMDTokens, List<String> currentTypes) {
 		String mdToken = null;
-		for (String tmp : mdTokenInLine) { // 检查是否有指定的md语法
+		for (String tmp : mdTokenInLine) { // 妫�鏌ユ槸鍚︽湁鎸囧畾鐨刴d璇硶
 			if (notCheckMDTokens.contains(tmp)) {
 				continue;
 			}
@@ -257,9 +257,9 @@ public class Analyzer {
 	}
 	
 	/**
-	 * 内容格式化
-	 * @param text 需要格式化的内容
-	 * @return 结果
+	 * 鍐呭鏍煎紡鍖�
+	 * @param text 闇�瑕佹牸寮忓寲鐨勫唴瀹�
+	 * @return 缁撴灉
 	 */
 	private static String formatText(String text) {
 		text = text.replaceAll("\t", "    ");
